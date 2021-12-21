@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-30zm(00=xr+bzvbi@tfs5=1q%h$gq&9p!nwi16#1-t_*j!u2__
 DEBUG = False
 
 #
-ALLOWED_HOSTS = ['superlists-staging.mattrhaffner.com']
+ALLOWED_HOSTS = ['superlists-staging.mattrhaffner.com', 'superlists.mattrhaffner.com', 'localhost']
 
 
 # Application definition
