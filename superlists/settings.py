@@ -24,10 +24,10 @@ SECRET_KEY = 'django-insecure-30zm(00=xr+bzvbi@tfs5=1q%h$gq&9p!nwi16#1-t_*j!u2__
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #
-DEBUG = False
+DEBUG = True
 
 #
-ALLOWED_HOSTS = ['superlists-staging.mattrhaffner.com', 'superlists.mattrhaffner.com', 'localhost']
+ALLOWED_HOSTS = ['superlists-staging.mattrhaffner.com', 'superlists.mattrhaffner.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lists',
+    'accounts',
 ]
+
+AUTH_USER_MODEL = 'accounts.ListUser'
+AUTHENTICATION_BACKENDS = ['accounts.authentication.PasswordlessAuthenticationBackend']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,3 +131,26 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST = 'smtp.yandex.com'
+EMAIL_HOST_USER = 'stevesieryan@yandex.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
+LOGGING = {
+    'version': 1,
+    'disabled_existing_loggers': False, 
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+        },
+    },
+    'root': {'level': 'INFO'},
+}
