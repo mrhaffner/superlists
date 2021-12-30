@@ -1,5 +1,5 @@
 from unittest.case import skip
-from.base import FunctionalTest
+from .base import FunctionalTest
 from selenium.webdriver.common.keys import Keys
 
 
