@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 
 
 def login(request):
-    user = auth.authenticate(uid=request.GET.get('token'))
+    user = auth.authenticate(request, uid=request.GET.get('token'))
     if user:
         auth.login(request, user)
     return redirect('/')
@@ -22,7 +22,7 @@ def send_login_email(request):
     send_mail(
         'Your login link for Superlists',
         message_body,
-        'noreply@superlists',
+        'stevesieryan@yandex.com',
         [email]
     )
     messages.success(

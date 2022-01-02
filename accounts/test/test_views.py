@@ -14,7 +14,7 @@ class SendLoginEmailViewTest(TestCase):
         self.assertTrue(mock_send_mail.called)
         (subject, body, from_email, to_list), kwargs = mock_send_mail.call_args
         self.assertEqual(subject, 'Your login link for Superlists')
-        self.assertEqual(from_email, 'noreply@superlists') #need to change
+        self.assertEqual(from_email, 'stevesieryan@yandex.com') #need to change
         self.assertEqual(to_list, ['edith@example.com'])
 
 
@@ -60,10 +60,10 @@ class LoginViewTest(TestCase):
 
 
     def test_calls_authenticate_with_uid_from_get_request(self, mock_auth):
-        self.client.get('/accounts/login?token=abcd123')
+        response = self.client.get('/accounts/login?token=abcd123')
         self.assertEqual(
             mock_auth.authenticate.call_args,
-            call(uid='abcd123')
+            call(response.wsgi_request, uid='abcd123')
         )
 
 

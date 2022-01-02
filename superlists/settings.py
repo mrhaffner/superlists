@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'accounts.User'
 AUTHENTICATION_BACKENDS = [
-    'accounts.authentication.PasswordlessAuthenticationBackend'
+    'accounts.authentication.PasswordlessAuthenticationBackend',
 ]
 
 # Internationalization
@@ -149,3 +149,9 @@ LOGGING = {
     },
     'root': {'level': 'INFO'}
 }
+
+EMAIL_HOST = 'smtp.yandex.com'
+EMAIL_HOST_USER = 'stevesieryan@yandex.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
